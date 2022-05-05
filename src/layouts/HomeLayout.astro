@@ -1,0 +1,193 @@
+---
+import HeadCommon from '../components/HeadCommon.astro';
+import HeadSEO from '../components/HeadSEO.astro';
+import Header from '../components/Header/Header.astro';
+import HomeCard from '../components/HomeCard.astro';
+import Footer from '../components/Footer/Footer.astro';
+
+import icon1 from '../components/icons/icon1.svg'; 
+import icon2 from '../components/icons/icon2.svg'; 
+import icon3 from '../components/icons/icon3.svg'; 
+import icon4 from '../components/icons/icon4.svg'; 
+import icon5 from '../components/icons/icon5.svg'; 
+import icon6 from '../components/icons/icon6.svg'; 
+
+
+import * as CONFIG from '../config';
+
+const { content = {} } = Astro.props;
+const currentPage = new URL(Astro.request.url).pathname;
+const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
+
+---
+
+<html dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en-us'} class="initial">
+	<head>
+		<HeadCommon />
+		<HeadSEO {content} canonicalURL={Astro.canonicalURL} />
+		<title>{content.title ? `${content.title} 🚀 ${CONFIG.SITE.title}` : CONFIG.SITE.title}</title>
+		<style>
+			body {
+				width: 100%;
+				display: grid;
+				grid-template-rows: var(--theme-navbar-height) 1fr;
+				--gutter: 0.5rem;
+				--doc-padding: 2rem;
+			}
+			.layout {
+				display: grid;
+				grid-auto-flow: column;
+				grid-template-columns:
+					minmax(var(--gutter), 1fr)
+					minmax(0, var(--max-width))
+					minmax(var(--gutter), 1fr);
+				overflow-x: hidden;
+			}
+			.layout :global(> *) {
+				width: 100%;
+				height: 100%;
+			}
+
+			#grid-main {
+				padding: var(--doc-padding) var(--gutter);
+				grid-column: 2;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+		
+			:global(.mobile-sidebar-toggle) {
+				overflow: hidden;
+			}
+			:global(.mobile-sidebar-toggle) #grid-left {
+				display: block;
+				top: 2rem;
+			}
+            .card-group {
+                margin-top:3rem;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: auto;
+                grid-gap: 1rem;
+                
+                }
+            p {
+                margin-bottom:2rem;
+            }
+            a {
+                text-decoration:none;
+            }
+			a:hover {
+                text-decoration:none;
+            }
+
+            img {
+                max-height:100px;
+                align-self: center;
+				margin-bottom: 1rem;
+            }
+			@media (min-width: 50em) {
+				.layout {
+					overflow: initial;
+					grid-template-columns:
+						20rem
+						minmax(0, var(--max-width));
+					gap: 1em;
+				}
+			}
+
+			@media (min-width: 72em) {
+				.layout {
+					grid-template-columns:
+						20rem
+						minmax(0, var(--max-width))
+						18rem;
+					padding-left: 0;
+					padding-right: 0;
+					margin: 0 auto;
+				}
+
+			}
+			a {
+				color: hsl(345, 60%, 24%);
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main class="layout">
+			<div id="grid-main">
+				<p>To help campuses ensure that their online courses are learner centered and well designed, a team of  SUNY staff and campus stakeholders has designed the OSCQR rubric, a customizable and flexible tool for online course quality review.</p>
+
+                <p>The OSCQR rubric specifically targets online course design. The OSCQR rubric is unique and differs from other online course quality rubrics in several ways. It is not restricted to mature online courses. The rubric can be used formatively with new online faculty to help guide, inform, and influence the design of their new online courses, and, it is non-evaluative.</p>
+
+                <p>Conceptually, the rubric and the online course review and refresh process are implemented as a professional development exercise designed to guide online faculty to use research-based effective practices and standards to improve the quality, effectiveness, and efficiency of their online course design, rather than as an online course evaluation, or quality assurance procedure.</p>
+				
+                <div class="card-group">
+
+            <a href="/overview/introduction">
+            <HomeCard>
+            <img slot="card-image" src={icon1} />
+            <h3 slot="card-title">Course Overview & Information</h3>
+            <p slot="card-content">Acta caelo ego, hoc illi ferroque, qui fluitque Achillis deiecerat erat inhospita arasque ad sume et aquis summo.</p>
+            </HomeCard>
+            </a>
+
+            <a href="/technology/introduction">
+            <HomeCard>
+            <img slot="card-image" src={icon2} />
+            <h3 slot="card-title">Technology & Tools</h3>
+            <p slot="card-content">Tereus is Aeolidae cepit, tua peregrinosque illam parvis, deerit sub et times sedant.</p>
+            </HomeCard>
+            </a>
+
+			<a href="">
+            <HomeCard>
+            <img slot="card-image" src={icon3} />
+            <h3 slot="card-title">Design & Layout</h3>
+            <p slot="card-content">Liberat sine pignus cupit, ferit mihi venias amores, et quod, maduere haec gravi contentusque heros. Qui suae attonitas.</p>
+            </HomeCard>
+				</a>
+				
+			<a href="">
+            <HomeCard>
+            <img slot="card-image" src={icon4} />
+            <h3 slot="card-title">Content & Activities</h3>
+            <p slot="card-content">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            </HomeCard>
+			</a>
+
+			<a href="">
+            <HomeCard>
+            <img slot="card-image" src={icon5} />
+            <h3 slot="card-title">Interaction</h3>
+            <p slot="card-content">Contentely didlley dee</p>
+            </HomeCard>
+			</a>
+
+			<a href="">
+			<HomeCard>
+            <img slot="card-image" src={icon1} />
+            <h3 slot="card-title">Assessment & Feedback</h3>
+            <p slot="card-content">Contentely didlley dee</p>
+            </HomeCard>
+			</a>
+
+			<a href="">
+			<HomeCard>
+            <img slot="card-image" src={icon3} />
+            <h3 slot="card-title">RSI</h3>
+            <p slot="card-content">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            </HomeCard>
+			</a>
+
+
+            
+
+                </div><!--end card group-->
+			</div>
+		</main>
+	</body>
+    <Footer />
+</html>

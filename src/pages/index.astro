@@ -1,0 +1,11 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+
+
+import * as CONFIG from '../config';
+
+const { content = {} } = Astro.props;
+const currentPage = new URL(Astro.request.url).pathname;
+const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
+---
+	<HomeLayout />
